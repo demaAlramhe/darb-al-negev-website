@@ -1,0 +1,100 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import Logo from "./Logo";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { useLanguage } from "@/context/LanguageContext";
+import { CloseIcon, MenuIcon } from "./ui/Icons";
+
+const navLinks = [
+  { key: "home" as const, href: "#home" },
+  { key: "about" as const, href: "#about" },
+  { key: "services" as const, href: "#services" },
+  { key: "packages" as const, href: "#packages" },
+  { key: "faq" as const, href: "#faq" },
+  { key: "contact" as const, href: "#contact" },
+];
+
+export default function Header() {
+  const { t } = useLanguage();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
+  return (
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "border-b border-brand-dark/10 bg-brand-bg/95 shadow-sm backdrop-blur-md"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 sm:py-4 lg:px-8">
+        <Link href="#home" className="shrink-0" onClick={() => setMenuOpen(false)}>
+          <Logo size="header" />
+        </Link>
+
+        <nav className="hidden items-center gap-6 lg:flex" aria-label="Main navigation">
+          {navLinks.map((link) => (
+            <a
+              key={link.key}
+              href={link.href}
+              className="text-sm font-medium text-brand-dark/80 transition-colors hover:text-brand-accent"
+            >
+              {t.nav[link.key]}
+            </a>
+          ))}
+        </nav>
+
+        <div className="hidden items-center gap-3 lg:flex">
+          <LanguageSwitcher />
+        </div>
+
+        <div className="flex items-center gap-2 lg:hidden">
+          <LanguageSwitcher compact />
+          <button
+            type="button"
+            className="rounded-xl border border-brand-dark/10 bg-white/80 p-2 text-brand-dark"
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-expanded={menuOpen}
+            aria-label={menuOpen ? t.common.closeMenu : t.common.openMenu}
+            suppressHydrationWarning
+          >
+            {menuOpen ? <CloseIcon /> : <MenuIcon />}
+          </button>
+        </div>
+      </div>
+
+      {menuOpen ? (
+        <div className="border-t border-brand-dark/10 bg-brand-bg/98 px-4 py-5 lg:hidden">
+          <nav className="flex flex-col gap-1" aria-label="Mobile navigation">
+            {navLinks.map((link) => (
+              <a
+                key={link.key}
+                href={link.href}
+                className="rounded-xl px-3 py-3 text-base font-medium text-brand-dark transition-colors hover:bg-brand-accent/10 hover:text-brand-accent"
+                onClick={() => setMenuOpen(false)}
+              >
+                {t.nav[link.key]}
+              </a>
+            ))}
+          </nav>
+        </div>
+      ) : null}
+    </header>
+  );
+}

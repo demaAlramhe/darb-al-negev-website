@@ -1,26 +1,174 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --brand-bg: #dfded8;
+  --brand-dark: #474747;
+  --brand-accent: #ae9172;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-brand-bg: var(--brand-bg);
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-accent: var(--brand-accent);
+  --font-sans: var(--font-cairo), var(--font-heebo), system-ui, sans-serif;
+  --font-arabic: var(--font-cairo), system-ui, sans-serif;
+  --font-hebrew: var(--font-heebo), system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--brand-bg);
+  color: var(--brand-dark);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-arabic {
+  font-family: var(--font-arabic);
+}
+
+.font-hebrew {
+  font-family: var(--font-hebrew);
+}
+
+::selection {
+  background: color-mix(in srgb, var(--brand-accent) 35%, white);
+  color: var(--brand-dark);
+}
+
+input,
+textarea,
+button {
+  font: inherit;
+}
+
+section {
+  scroll-margin-top: 5rem;
+}
+
+/* ── Accessibility modes ── */
+
+html[data-a11y-contrast="high"] {
+  --brand-bg: #ffffff;
+  --brand-dark: #000000;
+  --brand-accent: #000000;
+}
+
+html[data-a11y-contrast="high"] body {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+html[data-a11y-contrast="high"] :where(header, main, footer, section, nav, form, article) {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-color: #000000 !important;
+}
+
+html[data-a11y-contrast="high"] :where(a, button) {
+  outline: 2px solid #000000 !important;
+}
+
+html[data-a11y-contrast="dark"] {
+  color-scheme: dark;
+  --brand-bg: #111111;
+  --brand-dark: #f5f5f5;
+  --brand-accent: #d4bc9a;
+}
+
+html[data-a11y-contrast="dark"] body {
+  background: #111111 !important;
+  color: #f5f5f5 !important;
+}
+
+html[data-a11y-contrast="dark"] :where(header, main, footer, section, nav, form, article) {
+  background-color: #111111 !important;
+  color: #f5f5f5 !important;
+}
+
+html[data-a11y-contrast="dark"] :where([class*="bg-white"], [class*="bg-brand-bg"]) {
+  background-color: #1a1a1a !important;
+  color: #f5f5f5 !important;
+}
+
+html[data-a11y-contrast="light"] {
+  --brand-bg: #ffffff;
+  --brand-dark: #1a1a1a;
+  --brand-accent: #8a7358;
+}
+
+html[data-a11y-contrast="light"] body {
+  background: #ffffff !important;
+  color: #1a1a1a !important;
+}
+
+html[data-a11y-grayscale="true"] :where(header, main, footer) {
+  filter: grayscale(1);
+}
+
+html[data-a11y-highlight-links="true"] a {
+  background-color: #ffeb3b !important;
+  color: #000000 !important;
+  outline: 2px solid #000000 !important;
+  text-decoration: underline !important;
+}
+
+html[data-a11y-readable-font="true"] :where(body, body *):not([data-a11y-widget] *) {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+html[data-a11y-letter-spacing="true"] :where(body, body *):not([data-a11y-widget] *) {
+  letter-spacing: 0.12em !important;
+  word-spacing: 0.16em !important;
+  line-height: 1.8 !important;
+}
+
+html[data-a11y-reduce-motion="true"] :where(*, *::before, *::after):not([data-a11y-widget] *) {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+
+html[data-a11y-large-cursor="true"],
+html[data-a11y-large-cursor="true"] :where(*):not([data-a11y-widget] *) {
+  cursor:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath fill='%23000' stroke='%23fff' stroke-width='1.5' d='M4 4l7 22 4-9 9-4z'/%3E%3C/svg%3E")
+    4 4,
+    auto !important;
+}
+
+html[data-a11y-hide-images="true"] :where(img, picture, video, svg[role="img"]):not([data-a11y-widget] *) {
+  visibility: hidden !important;
+}
+
+html[data-a11y-underline-links="true"] a {
+  text-decoration: underline !important;
+  text-underline-offset: 0.2em;
+}
+
+html[data-a11y-keyboard-focus="true"] :where(*:focus-visible):not([data-a11y-widget] *) {
+  outline: 3px solid #005fcc !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 6px rgba(0, 95, 204, 0.35) !important;
+}
+
+[data-a11y-widget] {
+  filter: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
