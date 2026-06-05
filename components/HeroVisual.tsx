@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import {
   Building2,
-  Globe,
   Luggage,
   MapPin,
   Plane,
@@ -11,6 +10,7 @@ import {
 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { featuredPackages } from "@/data/packages";
+import LogoIcon from "./LogoIcon";
 
 const routes = [
   { d: "M 48 148 Q 120 72 188 108", delay: 0 },
@@ -20,17 +20,16 @@ const routes = [
 ];
 
 const destinationPositions = [
-  { position: "start-[6%] top-[20%]", delay: 0 },
-  { position: "end-[4%] top-[12%]", delay: 0.2 },
-  { position: "end-[6%] bottom-[28%]", delay: 0.4 },
-  { position: "start-[4%] bottom-[22%]", delay: 0.6 },
+  { position: "left-[18%] top-[18%]", delay: 0 },
+  { position: "right-[14%] top-[10%]", delay: 0.2 },
+  { position: "right-[16%] bottom-[30%]", delay: 0.4 },
+  { position: "left-[14%] bottom-[24%]", delay: 0.6 },
 ];
 
 const iconOrbs = [
-  { Icon: Plane, position: "start-[6%] top-[42%]", delay: 0 },
-  { Icon: Building2, position: "end-[8%] top-[38%]", delay: 0.15 },
-  { Icon: Luggage, position: "start-[10%] bottom-[18%]", delay: 0.3 },
-  { Icon: Stamp, position: "end-[10%] bottom-[22%]", delay: 0.45 },
+  { Icon: Building2, position: "left-[20%] top-[38%]", delay: 0 },
+  { Icon: Luggage, position: "right-[18%] top-[36%]", delay: 0.15 },
+  { Icon: Stamp, position: "left-[22%] bottom-[20%]", delay: 0.3 },
 ];
 
 export default function HeroVisual() {
@@ -41,12 +40,12 @@ export default function HeroVisual() {
     <div className="relative w-full max-w-[380px] sm:max-w-[400px]">
       <div className="relative aspect-[5/4] overflow-hidden rounded-[2rem] bg-gradient-to-br from-white/95 via-brand-bg/60 to-brand-accent/12 shadow-xl shadow-brand-dark/10 ring-1 ring-white/70 backdrop-blur-sm">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -top-1/3 start-1/2 h-2/5 w-2/5 -translate-x-1/2 rounded-full bg-brand-accent/12 blur-2xl" />
+          <div className="absolute -top-1/3 left-1/2 h-2/5 w-2/5 -translate-x-1/2 rounded-full bg-brand-accent/12 blur-2xl" />
           <div className="absolute bottom-0 end-0 h-1/3 w-1/3 rounded-full bg-sky-200/25 blur-2xl" />
         </div>
 
-        <div className="relative flex h-full flex-col p-4 sm:p-5">
-          <div className="mb-3 flex flex-wrap justify-center gap-1.5">
+        <div className="relative flex h-full flex-col p-3.5 sm:p-4">
+          <div className="mb-2 flex flex-wrap justify-center gap-1">
             {t.hero.visual.tags.map((tag, index) => (
               <motion.span
                 key={tag}
@@ -66,7 +65,7 @@ export default function HeroVisual() {
               animate={{ rotate: 360 }}
               transition={{ duration: 140, repeat: Infinity, ease: "linear" }}
             >
-              <div className="h-[68%] w-[68%] rounded-full border border-dashed border-brand-accent/20" />
+              <div className="h-[62%] w-[62%] rounded-full border border-dashed border-brand-accent/20" />
             </motion.div>
 
             <svg
@@ -99,11 +98,13 @@ export default function HeroVisual() {
             </svg>
 
             <motion.div
-              className="absolute start-1/2 top-1/2 flex h-[46%] w-[46%] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-gradient-to-br from-brand-dark/[0.04] via-white/50 to-brand-accent/15 shadow-inner ring-1 ring-brand-accent/15"
-              animate={{ scale: [1, 1.015, 1] }}
+              className="absolute left-1/2 top-[46%] z-20 flex h-[48%] w-[48%] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white p-1.5 shadow-lg ring-2 ring-brand-accent/25 sm:p-2"
+              animate={{ scale: [1, 1.02, 1] }}
               transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
             >
-              <Globe className="h-[52%] w-[52%] text-brand-accent/75" strokeWidth={1.1} />
+              <div className="flex h-full w-full items-center justify-center overflow-hidden rounded-full bg-brand-bg/80">
+                <LogoIcon size="hero" priority className="h-[92%] w-[92%]" />
+              </div>
             </motion.div>
 
             {t.hero.visual.destinations.map((name, index) => {
@@ -143,23 +144,23 @@ export default function HeroVisual() {
             ))}
 
             <motion.div
-              className="absolute end-[22%] top-[44%] flex h-9 w-9 items-center justify-center rounded-xl bg-brand-dark text-white shadow-lg"
+              className="absolute left-[58%] top-[40%] z-10 flex h-8 w-8 items-center justify-center rounded-xl bg-brand-dark text-white shadow-lg"
               animate={{
-                x: [0, 8, 16, 8, 0],
-                y: [0, -5, 0, 5, 0],
+                x: [0, 6, 12, 6, 0],
+                y: [0, -4, 0, 4, 0],
                 rotate: [-35, -30, -35],
               }}
               transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
             >
-              <Plane className="h-4 w-4 -rotate-45" />
+              <Plane className="h-3.5 w-3.5 -rotate-45" />
             </motion.div>
 
             {miniOffers.map((pkg, index) => {
               const badge = pkg.badge ? t.packages.badges[pkg.badge] : null;
               const position =
                 index === 0
-                  ? "absolute start-0 top-[8%] max-w-[46%]"
-                  : "absolute end-0 bottom-[6%] max-w-[48%]";
+                  ? "absolute left-[4%] top-[6%] z-30 max-w-[44%]"
+                  : "absolute right-[4%] bottom-[4%] z-30 max-w-[44%]";
 
               return (
                 <motion.a
@@ -200,7 +201,7 @@ export default function HeroVisual() {
           </div>
 
           <motion.div
-            className="mt-3 flex justify-center"
+            className="mt-2 flex justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.1, duration: 0.5 }}

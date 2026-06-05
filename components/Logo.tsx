@@ -25,7 +25,7 @@ export default function Logo({
   const imageSizeClass =
     size === "footer"
       ? "max-h-20 w-auto max-w-[220px] sm:max-h-24 sm:max-w-[260px]"
-      : "max-h-[4.25rem] w-auto max-w-[200px] sm:max-h-24 sm:max-w-[240px] lg:max-h-28 lg:max-w-[280px]";
+      : "h-[4.25rem] w-auto max-w-[260px] sm:h-[4.5rem] sm:max-w-[300px] lg:h-[4.65rem] lg:max-w-[340px]";
 
   if (failed || extensionIndex >= LOGO_EXTENSIONS.length) {
     return (

@@ -42,13 +42,10 @@ export default function Hero() {
             {t.hero.badge}
           </motion.span>
 
-          <h1 className="mb-5 text-3xl font-bold leading-[1.15] tracking-tight text-brand-dark sm:text-4xl lg:text-[2.65rem]">
-            {t.hero.title}
+          <h1 className="mb-8 text-3xl font-bold leading-[1.05] tracking-tight text-brand-dark sm:text-4xl lg:text-[2.65rem]">
+            <span className="block">{t.hero.titleLine1}</span>
+            <span className="block text-brand-dark/90">{t.hero.titleLine2}</span>
           </h1>
-
-          <p className="mx-auto mb-8 max-w-xl text-base leading-relaxed text-brand-dark/75 sm:text-lg">
-            {t.hero.subtitle}
-          </p>
 
           <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:items-center">
             <motion.a

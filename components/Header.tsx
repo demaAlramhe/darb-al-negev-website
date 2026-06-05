@@ -43,8 +43,8 @@ export default function Header() {
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 sm:py-4 lg:px-8">
-        <Link href="#home" className="shrink-0" onClick={() => setMenuOpen(false)}>
+      <div className="mx-auto flex h-[4.75rem] max-w-7xl items-center justify-between gap-4 px-4 sm:h-[5rem] sm:px-6 lg:px-8">
+        <Link href="#home" className="flex h-full shrink-0 items-center" onClick={() => setMenuOpen(false)}>
           <Logo size="header" />
         </Link>
 

@@ -10,6 +10,9 @@ export const INSTAGRAM_URL =
 export const DEVELOPER_NAME = "Dema Digital Solutions";
 export const DEVELOPER_URL = "https://demadigitalsolutions.com/";
 
+export const LOGO_FULL_PATH = "/logoNoBackground.png";
+export const LOGO_ICON_PATH = "/looogo.png";
+
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
 
 export function getWhatsAppInquiryUrl(message: string): string {
