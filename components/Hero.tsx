@@ -7,8 +7,9 @@ import HeroVisual from "./HeroVisual";
 import AnimateIn from "./ui/AnimateIn";
 import { WhatsAppIcon } from "./ui/Icons";
 import { WhatsAppButton } from "./ui/SectionHeading";
+import type { TravelPackage } from "@/types/package";
 
-export default function Hero() {
+export default function Hero({ miniPackages }: { miniPackages: TravelPackage[] }) {
   const { t } = useLanguage();
   const whatsappHref = getWhatsAppInquiryUrl(t.whatsapp.general);
 
@@ -77,7 +78,7 @@ export default function Hero() {
         </AnimateIn>
 
         <AnimateIn delay={0.15} className="relative flex justify-center lg:justify-end">
-          <HeroVisual />
+          <HeroVisual miniPackages={miniPackages} />
         </AnimateIn>
       </div>
     </section>

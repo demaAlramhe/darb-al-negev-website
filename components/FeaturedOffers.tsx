@@ -2,17 +2,19 @@
 
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { featuredPackages } from "@/data/packages";
 import { useLanguage } from "@/context/LanguageContext";
+import type { TravelPackage } from "@/types/package";
 import PackageCard from "./PackageCard";
 import AnimateIn from "./ui/AnimateIn";
-import SectionHeading from "./ui/SectionHeading";
 
-export default function FeaturedOffers() {
+export default function FeaturedOffers({ packages }: { packages: TravelPackage[] }) {
   const { locale, t } = useLanguage();
+
+  if (packages.length === 0) return null;
 
   const labels = {
     destination: t.packages.destination,
+    price: t.packages.price,
     date: t.packages.date,
     duration: t.packages.duration,
     perPerson: t.packages.perPerson,
@@ -38,14 +40,9 @@ export default function FeaturedOffers() {
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-2">
-          {featuredPackages.map((pkg, index) => (
+          {packages.map((pkg, index) => (
             <AnimateIn key={pkg.id} delay={index * 0.08}>
-              <PackageCard
-                pkg={pkg}
-                locale={locale}
-                labels={labels}
-                variant="featured"
-              />
+              <PackageCard pkg={pkg} locale={locale} labels={labels} variant="featured" />
             </AnimateIn>
           ))}
         </div>

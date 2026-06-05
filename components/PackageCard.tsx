@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import type { Locale } from "@/types/language";
 import type { PackageBadge, TravelPackage } from "@/types/package";
 import { getWhatsAppInquiryUrl } from "@/lib/constants";
@@ -12,6 +13,7 @@ interface PackageCardProps {
   locale: Locale;
   labels: {
     destination: string;
+    price: string;
     date: string;
     duration: string;
     perPerson: string;
@@ -45,10 +47,19 @@ export default function PackageCard({
           : "border-brand-dark/8 hover:border-brand-accent/25"
       }`}
     >
-      <div className={`relative h-52 bg-gradient-to-br ${pkg.imageGradient}`}>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.15),transparent_50%)]" />
-        <div className="absolute inset-0 bg-black/10 transition-colors group-hover:bg-black/5" />
-        <span className="absolute start-4 top-4 text-4xl drop-shadow-md">{pkg.imageIcon}</span>
+      <div className={`relative h-52 ${pkg.imageUrl ? "bg-brand-dark/5" : `bg-gradient-to-br ${pkg.imageGradient}`}`}>
+        {pkg.imageUrl ? (
+          <>
+            <Image src={pkg.imageUrl} alt={title} fill className="object-cover" sizes="(max-width:768px) 100vw, 33vw" />
+            <div className="absolute inset-0 bg-black/20 transition-colors group-hover:bg-black/10" />
+          </>
+        ) : (
+          <>
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.15),transparent_50%)]" />
+            <div className="absolute inset-0 bg-black/10 transition-colors group-hover:bg-black/5" />
+            <span className="absolute start-4 top-4 text-4xl drop-shadow-md">{pkg.imageIcon}</span>
+          </>
+        )}
         {pkg.badge ? (
           <span
             className={`absolute end-4 top-4 rounded-full px-3 py-1 text-xs font-bold shadow-sm ${badgeStyles[pkg.badge]}`}
@@ -83,7 +94,7 @@ export default function PackageCard({
         </ul>
 
         <div className="mb-5 mt-auto border-t border-brand-dark/8 pt-4">
-          <p className="text-xs text-brand-dark/55">{labels.destination}</p>
+          <p className="text-xs text-brand-dark/55">{labels.price}</p>
           <p className="text-2xl font-bold text-brand-accent">
             {pkg.price[locale]}
             <span className="ms-1 text-sm font-normal text-brand-dark/60">{labels.perPerson}</span>

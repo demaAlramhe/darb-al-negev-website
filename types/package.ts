@@ -4,6 +4,7 @@ export interface TravelPackage {
   id: string;
   imageGradient: string;
   imageIcon: string;
+  imageUrl?: string;
   badge?: PackageBadge;
   featured?: boolean;
   title: Record<"ar" | "he", string>;
@@ -12,4 +13,6 @@ export interface TravelPackage {
   date: Record<"ar" | "he", string>;
   duration: Record<"ar" | "he", string>;
   description: Record<"ar" | "he", string>;
+  includes?: Record<"ar" | "he", string>;
+  notes?: Record<"ar" | "he", string>;
 }

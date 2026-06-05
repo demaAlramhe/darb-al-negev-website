@@ -113,12 +113,36 @@ export const packages: TravelPackage[] = [
 ];
 
 export const galleryItems = [
-  { id: "gallery-1", gradient: "from-slate-600 via-blue-800 to-indigo-950", icon: "✈️", label: { ar: "رحلات جوية", he: "טיסות" } },
-  { id: "gallery-2", gradient: "from-teal-600 via-cyan-700 to-blue-900", icon: "🏖️", label: { ar: "عطلات على الشاطئ", he: "חופשות חוף" } },
-  { id: "gallery-3", gradient: "from-amber-600 via-orange-700 to-yellow-900", icon: "🏙️", label: { ar: "سفر المدن", he: "טיולי ערים" } },
-  { id: "gallery-4", gradient: "from-rose-600 via-pink-700 to-purple-900", icon: "👨‍👩‍👧‍👦", label: { ar: "رحلات عائلية", he: "טיולים משפחתיים" } },
-  { id: "gallery-5", gradient: "from-emerald-600 via-green-800 to-teal-950", icon: "🌿", label: { ar: "طبيعة وسياحة", he: "טבע ותיירות" } },
-  { id: "gallery-6", gradient: "from-sky-500 via-blue-700 to-indigo-950", icon: "🏨", label: { ar: "فنادق وبكجات", he: "מלונות וחבילות" } },
+  {
+    id: "gallery-1",
+    image: "/gallery/rhlatGauya.png",
+    label: { ar: "رحلات جوية", he: "טיסות" },
+  },
+  {
+    id: "gallery-2",
+    image: "/gallery/atlatalaAllshatei.png",
+    label: { ar: "عطلات على الشاطئ", he: "חופשות חוף" },
+  },
+  {
+    id: "gallery-3",
+    image: "/gallery/sfarAlmodon.png",
+    label: { ar: "سفر المدن", he: "טיולי ערים" },
+  },
+  {
+    id: "gallery-4",
+    image: "/gallery/rhlatAlya.png",
+    label: { ar: "رحلات عائلية", he: "טיולים משפחתיים" },
+  },
+  {
+    id: "gallery-5",
+    image: "/gallery/tbeaaWsyaha.png",
+    label: { ar: "طبيعة وسياحة", he: "טבע ותיירות" },
+  },
+  {
+    id: "gallery-6",
+    image: "/gallery/fnadekWbakegat.png",
+    label: { ar: "فنادق وبكجات", he: "מלונות וחבילות" },
+  },
 ];
 
 export const featuredPackages = packages.filter((p) => p.featured);

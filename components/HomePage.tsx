@@ -16,21 +16,23 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import StickyWhatsApp from "@/components/StickyWhatsApp";
 import { useLanguage } from "@/context/LanguageContext";
+import type { TravelPackage } from "@/types/package";
 
-export default function HomePage() {
+export default function HomePage({ packages }: { packages: TravelPackage[] }) {
   const { dir, locale } = useLanguage();
+  const featuredPackages = packages.filter((pkg) => pkg.featured).slice(0, 2);
 
   return (
     <div dir={dir} lang={locale} className={locale === "ar" ? "font-arabic" : "font-hebrew"}>
       <Header />
       <main>
-        <Hero />
+        <Hero miniPackages={featuredPackages.length > 0 ? featuredPackages : packages.slice(0, 2)} />
         <TrustBar />
         <About />
         <HowItWorks />
         <Services />
-        <FeaturedOffers />
-        <Packages />
+        <FeaturedOffers packages={featuredPackages.length > 0 ? featuredPackages : packages.slice(0, 2)} />
+        <Packages packages={packages} />
         <WhyChooseUs />
         <Testimonials />
         <FAQ />

@@ -9,7 +9,7 @@ import {
   Stamp,
 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
-import { featuredPackages } from "@/data/packages";
+import type { TravelPackage } from "@/types/package";
 import LogoIcon from "./LogoIcon";
 
 const routes = [
@@ -32,9 +32,9 @@ const iconOrbs = [
   { Icon: Stamp, position: "left-[22%] bottom-[20%]", delay: 0.3 },
 ];
 
-export default function HeroVisual() {
+export default function HeroVisual({ miniPackages }: { miniPackages: TravelPackage[] }) {
   const { t, locale } = useLanguage();
-  const miniOffers = featuredPackages.slice(0, 2);
+  const miniOffers = miniPackages.slice(0, 2);
 
   return (
     <div className="relative w-full max-w-[380px] sm:max-w-[400px]">
@@ -155,7 +155,8 @@ export default function HeroVisual() {
               <Plane className="h-3.5 w-3.5 -rotate-45" />
             </motion.div>
 
-            {miniOffers.map((pkg, index) => {
+            {miniOffers.length > 0
+              ? miniOffers.map((pkg, index) => {
               const badge = pkg.badge ? t.packages.badges[pkg.badge] : null;
               const position =
                 index === 0
@@ -197,7 +198,8 @@ export default function HeroVisual() {
                   </p>
                 </motion.a>
               );
-            })}
+            })
+              : null}
           </div>
 
           <motion.div

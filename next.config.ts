@@ -5,6 +5,19 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.join(process.cwd()),
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+      },
+    ],
+  },
+  experimental: {
+    serverActions: {
+      bodySizeLimit: "25mb",
+    },
+  },
 };
 
 export default nextConfig;

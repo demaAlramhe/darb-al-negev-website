@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { galleryItems } from "@/data/packages";
 import { useLanguage } from "@/context/LanguageContext";
 import AnimateIn from "./ui/AnimateIn";
@@ -22,18 +23,26 @@ export default function Gallery() {
             <AnimateIn
               key={item.id}
               delay={index * 0.05}
-              className={`${
-                index === 0 ? "col-span-2 row-span-2" : ""
-              }`}
+              className={`${index === 0 ? "col-span-2 row-span-2" : ""}`}
             >
               <div
-                className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${item.gradient} transition-transform hover:scale-[1.02] ${
+                className={`group relative overflow-hidden rounded-2xl bg-brand-dark/5 transition-transform hover:scale-[1.02] ${
                   index === 0 ? "min-h-[280px] md:min-h-[360px]" : "min-h-[160px] sm:min-h-[180px]"
                 } h-full`}
               >
-                <div className="absolute inset-0 bg-black/10 transition-colors group-hover:bg-black/15" />
-                <div className="absolute start-4 top-4 text-3xl sm:text-4xl">{item.icon}</div>
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                <Image
+                  src={item.image}
+                  alt={item.label[locale]}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes={
+                    index === 0
+                      ? "(max-width: 768px) 100vw, 66vw"
+                      : "(max-width: 768px) 50vw, 33vw"
+                  }
+                />
+                <div className="absolute inset-0 bg-black/20 transition-colors group-hover:bg-black/30" />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4">
                   <p className="text-sm font-semibold text-white sm:text-base">{item.label[locale]}</p>
                 </div>
               </div>
