@@ -98,12 +98,12 @@ export default function HeroVisual({ miniPackages }: { miniPackages: TravelPacka
             </svg>
 
             <motion.div
-              className="absolute left-1/2 top-[46%] z-20 flex h-[48%] w-[48%] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white p-1.5 shadow-lg ring-2 ring-brand-accent/25 sm:p-2"
-              animate={{ scale: [1, 1.02, 1] }}
+              className="pointer-events-none absolute left-1/2 top-[46%] z-[5] -translate-x-1/2 -translate-y-1/2"
+              animate={{ scale: [1, 1.03, 1] }}
               transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
             >
-              <div className="flex h-full w-full items-center justify-center overflow-hidden rounded-full bg-brand-bg/80">
-                <LogoIcon size="hero" priority className="h-[92%] w-[92%]" />
+              <div className="h-16 w-16 sm:h-20 sm:w-20">
+                <LogoIcon priority decorative className="h-full w-full drop-shadow-lg" />
               </div>
             </motion.div>
 
