@@ -4,7 +4,7 @@ import { SectionLabel } from "./Icons";
 interface SectionHeadingProps {
   label: string;
   title: string;
-  subtitle?: string | string[];
+  subtitle?: string | readonly string[];
   align?: "center" | "start";
 }
 
