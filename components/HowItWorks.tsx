@@ -4,7 +4,6 @@ import { MessageCircle, Search, Settings, PlaneTakeoff } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import AnimateIn from "./ui/AnimateIn";
 import SectionHeading from "./ui/SectionHeading";
-import TravelDecor from "./ui/TravelDecor";
 
 const stepIcons = [MessageCircle, Search, Settings, PlaneTakeoff];
 
@@ -12,14 +11,9 @@ export default function HowItWorks() {
   const { t } = useLanguage();
 
   return (
-    <section className="section-divider relative overflow-hidden py-20 sm:py-24">
-      <TravelDecor variant="routes" />
+    <section className="section-divider py-20 sm:py-24">
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          label={t.howItWorks.label}
-          title={t.howItWorks.title}
-          subtitle={t.howItWorks.subtitle}
-        />
+        <SectionHeading label={t.howItWorks.label} title={t.howItWorks.title} />
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {t.howItWorks.steps.map((step, index) => {

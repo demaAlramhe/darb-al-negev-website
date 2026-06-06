@@ -7,15 +7,13 @@ import { faqItems } from "@/data/faq";
 import { useLanguage } from "@/context/LanguageContext";
 import AnimateIn from "./ui/AnimateIn";
 import SectionHeading from "./ui/SectionHeading";
-import TravelDecor from "./ui/TravelDecor";
 
 export default function FAQ() {
   const { locale, t } = useLanguage();
   const [openId, setOpenId] = useState<string | null>(faqItems[0]?.id ?? null);
 
   return (
-    <section id="faq" className="section-divider relative overflow-hidden bg-white/40 py-20 sm:py-24">
-      <TravelDecor variant="globe" />
+    <section id="faq" className="section-divider bg-white/40 py-20 sm:py-24">
       <div className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           label={t.faq.label}

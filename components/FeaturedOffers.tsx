@@ -6,7 +6,6 @@ import { useLanguage } from "@/context/LanguageContext";
 import type { TravelPackage } from "@/types/package";
 import PackageCard from "./PackageCard";
 import AnimateIn from "./ui/AnimateIn";
-import TravelDecor from "./ui/TravelDecor";
 
 export default function FeaturedOffers({ packages }: { packages: TravelPackage[] }) {
   const { locale, t } = useLanguage();
@@ -28,7 +27,6 @@ export default function FeaturedOffers({ packages }: { packages: TravelPackage[]
     <section className="relative overflow-hidden bg-brand-dark py-20 sm:py-24">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(174,145,114,0.15),transparent_50%)]" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(255,255,255,0.05),transparent_40%)]" />
-      <TravelDecor variant="routes" light />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10 text-center">

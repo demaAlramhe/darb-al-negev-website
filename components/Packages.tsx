@@ -6,7 +6,6 @@ import type { TravelPackage } from "@/types/package";
 import PackageCard from "./PackageCard";
 import AnimateIn from "./ui/AnimateIn";
 import SectionHeading from "./ui/SectionHeading";
-import TravelDecor from "./ui/TravelDecor";
 
 export default function Packages({ packages }: { packages: TravelPackage[] }) {
   const { locale, t } = useLanguage();
@@ -23,8 +22,7 @@ export default function Packages({ packages }: { packages: TravelPackage[] }) {
   };
 
   return (
-    <section id="packages" className="section-divider relative overflow-hidden py-20 sm:py-24">
-      <TravelDecor variant="pins" />
+    <section id="packages" className="section-divider py-20 sm:py-24">
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           label={t.packages.label}

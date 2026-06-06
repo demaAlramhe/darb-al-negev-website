@@ -5,14 +5,12 @@ import { testimonials } from "@/data/testimonials";
 import { useLanguage } from "@/context/LanguageContext";
 import AnimateIn from "./ui/AnimateIn";
 import SectionHeading from "./ui/SectionHeading";
-import TravelDecor from "./ui/TravelDecor";
 
 export default function Testimonials() {
   const { locale, t } = useLanguage();
 
   return (
-    <section className="section-soft-gradient relative overflow-hidden py-20 sm:py-24">
-      <TravelDecor variant="stamps" />
+    <section className="section-soft-gradient py-20 sm:py-24">
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           label={t.testimonials.label}

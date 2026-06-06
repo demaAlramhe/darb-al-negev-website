@@ -6,14 +6,12 @@ import HeroVisual from "./HeroVisual";
 import { aboutFeatureVisuals } from "./about/AboutFeatureVisuals";
 import AnimateIn from "./ui/AnimateIn";
 import SectionHeading from "./ui/SectionHeading";
-import TravelDecor from "./ui/TravelDecor";
 
 export default function About({ miniPackages }: { miniPackages: TravelPackage[] }) {
   const { t } = useLanguage();
 
   return (
-    <section id="about" className="section-soft-gradient relative overflow-hidden py-20 sm:py-24">
-      <TravelDecor variant="map" />
+    <section id="about" className="section-soft-gradient relative py-20 sm:py-24">
       <div className="pointer-events-none absolute -start-20 bottom-0 h-56 w-56 rounded-full bg-brand-accent/8 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

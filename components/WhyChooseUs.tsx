@@ -4,14 +4,12 @@ import { CheckCircle2, Sparkles } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import AnimateIn from "./ui/AnimateIn";
 import SectionHeading from "./ui/SectionHeading";
-import TravelDecor from "./ui/TravelDecor";
 
 export default function WhyChooseUs() {
   const { t } = useLanguage();
 
   return (
     <section className="section-divider relative overflow-hidden bg-white/50 py-20 sm:py-24">
-      <TravelDecor variant="stamps" />
       <div className="pointer-events-none absolute -top-24 end-0 h-64 w-64 rounded-full bg-brand-accent/10 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-16 start-0 h-48 w-48 rounded-full bg-brand-dark/5 blur-3xl" />
 

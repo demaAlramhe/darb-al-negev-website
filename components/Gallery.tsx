@@ -5,14 +5,12 @@ import { galleryItems } from "@/data/packages";
 import { useLanguage } from "@/context/LanguageContext";
 import AnimateIn from "./ui/AnimateIn";
 import SectionHeading from "./ui/SectionHeading";
-import TravelDecor from "./ui/TravelDecor";
 
 export default function Gallery() {
   const { locale, t } = useLanguage();
 
   return (
-    <section id="gallery" className="section-divider relative overflow-hidden py-20 sm:py-24">
-      <TravelDecor variant="routes" />
+    <section id="gallery" className="section-divider py-20 sm:py-24">
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           label={t.gallery.label}

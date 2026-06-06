@@ -4,7 +4,6 @@ import { Plane, Globe, Hotel, Tag, Users, Headphones } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import AnimateIn from "./ui/AnimateIn";
 import SectionHeading from "./ui/SectionHeading";
-import TravelDecor from "./ui/TravelDecor";
 
 const serviceIcons = [Plane, Globe, Hotel, Tag, Users, Headphones];
 
@@ -12,8 +11,7 @@ export default function Services() {
   const { t } = useLanguage();
 
   return (
-    <section id="services" className="section-divider relative overflow-hidden bg-white/40 py-20 sm:py-24">
-      <TravelDecor variant="globe" />
+    <section id="services" className="section-divider bg-white/40 py-20 sm:py-24">
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           label={t.services.label}
