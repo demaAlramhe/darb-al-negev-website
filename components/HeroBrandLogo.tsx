@@ -12,7 +12,13 @@ import { LOGO_FULL_PATH } from "@/lib/constants";
 
 const TILT = 7;
 
-export default function HeroBrandLogo({ alt }: { alt: string }) {
+export default function HeroBrandLogo({
+  alt,
+  compact = false,
+}: {
+  alt: string;
+  compact?: boolean;
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
 
@@ -42,7 +48,11 @@ export default function HeroBrandLogo({ alt }: { alt: string }) {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative w-full max-w-[min(100%,400px)] sm:max-w-[440px] lg:max-w-[480px] xl:max-w-[520px]"
+      className={`relative w-full ${
+        compact
+          ? "max-w-[min(100%,260px)]"
+          : "max-w-[min(100%,280px)] sm:max-w-[440px] lg:max-w-[480px] xl:max-w-[520px]"
+      }`}
       style={{ perspective: 1200 }}
     >
       <div

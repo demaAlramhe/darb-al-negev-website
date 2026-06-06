@@ -16,7 +16,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative isolate overflow-hidden pt-28 pb-10 sm:pt-32 sm:pb-12 lg:min-h-[620px] lg:pt-36 lg:pb-14"
+      className="relative isolate overflow-hidden pt-[7.75rem] pb-8 sm:pt-32 sm:pb-12 lg:min-h-[620px] lg:pt-36 lg:pb-14"
     >
       <div className="pointer-events-none absolute inset-0 -z-20 overflow-hidden">
         <Image
@@ -35,13 +35,13 @@ export default function Hero() {
       <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-brand-bg/88 via-brand-bg/72 to-brand-bg/82 sm:from-brand-bg/82 sm:via-brand-bg/58 sm:to-brand-bg/70" />
       <div className="pointer-events-none absolute inset-0 -z-10 hidden bg-gradient-to-l from-brand-bg/95 via-brand-bg/55 to-transparent lg:block" />
 
-      <div className="relative mx-auto grid max-w-7xl items-center gap-6 px-4 sm:gap-8 sm:px-6 lg:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)] lg:gap-12 xl:gap-14 lg:px-8">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-0 px-4 sm:gap-8 sm:px-6 lg:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)] lg:gap-12 xl:gap-14 lg:px-8">
         <AnimateIn className="mx-auto max-w-xl text-center lg:max-w-2xl">
           <h1 className="mb-3 text-3xl font-bold leading-[1.05] tracking-tight text-brand-dark drop-shadow-sm sm:text-4xl lg:text-[2.65rem]">
             <span className="block">{t.hero.titleLine1}</span>
             <span className="block text-brand-dark/90">{t.hero.titleLine2}</span>
           </h1>
-          <p className="mb-8 text-sm font-medium tracking-wide text-brand-dark/65 sm:text-base">
+          <p className="mb-6 text-sm font-medium tracking-wide text-brand-dark/65 sm:mb-8 sm:text-base">
             {t.hero.titleTagline}
           </p>
 
@@ -60,7 +60,7 @@ export default function Hero() {
             </WhatsAppButton>
           </div>
 
-          <div className="mt-8 grid grid-cols-3 gap-3 rounded-2xl border border-white/50 bg-white/55 px-3 py-5 text-center shadow-sm backdrop-blur-md sm:px-4">
+          <div className="mt-6 grid grid-cols-3 gap-3 rounded-2xl border border-white/50 bg-white/55 px-3 py-4 text-center shadow-sm backdrop-blur-md sm:mt-8 sm:px-4 sm:py-5">
             {[
               { value: "50+", label: t.hero.stats.domestic },
               { value: "30+", label: t.hero.stats.international },
@@ -72,9 +72,13 @@ export default function Hero() {
               </div>
             ))}
           </div>
+
+          <div className="-mt-1 flex justify-center lg:hidden">
+            <HeroBrandLogo alt={t.siteName} compact />
+          </div>
         </AnimateIn>
 
-        <AnimateIn delay={0.15} className="relative -mt-3 flex justify-center sm:-mt-4 lg:mt-0 lg:-translate-y-7 lg:justify-end xl:-translate-y-8">
+        <AnimateIn delay={0.15} className="relative hidden justify-center lg:flex lg:-translate-y-7 lg:justify-end xl:-translate-y-8">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
