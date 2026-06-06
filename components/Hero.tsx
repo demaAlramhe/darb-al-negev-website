@@ -42,18 +42,18 @@ export default function Hero() {
       <div className="pointer-events-none absolute inset-0 -z-10 hidden bg-gradient-to-l from-brand-bg/95 via-brand-bg/55 to-transparent lg:block" />
 
       {/* Mobile: Title → Logo → Buttons → Stats */}
-      <div className="relative mx-auto flex max-w-xl flex-col items-center gap-1 px-4 sm:gap-5 sm:px-6 lg:hidden">
+      <div className="relative mx-auto flex max-w-xl flex-col items-center gap-0 px-4 sm:gap-5 sm:px-6 lg:hidden">
         <AnimateIn className="w-full text-center">
-          <h1 className="mb-1.5 text-3xl font-bold leading-[1.05] tracking-tight text-brand-dark drop-shadow-sm sm:mb-2 sm:text-4xl">
+          <h1 className="mb-1 text-3xl font-bold leading-[1.05] tracking-tight text-brand-dark drop-shadow-sm sm:mb-2 sm:text-4xl">
             <span className="block">{t.hero.titleLine1}</span>
             <span className="block text-brand-dark/90">{t.hero.titleLine2}</span>
           </h1>
-          <p className="text-sm font-medium tracking-wide text-brand-dark/65 sm:text-base">
+          <p className="mb-0 text-sm font-medium leading-snug tracking-wide text-brand-dark/65 sm:text-base">
             {t.hero.titleTagline}
           </p>
         </AnimateIn>
 
-        <AnimateIn delay={0.08} className="-mt-4 flex w-full justify-center sm:-mt-2">
+        <AnimateIn delay={0.08} className="-mt-6 flex w-full justify-center sm:-mt-3">
           <HeroBrandLogo alt={t.siteName} compact />
         </AnimateIn>
 
@@ -76,7 +76,7 @@ export default function Hero() {
           </WhatsAppButton>
         </AnimateIn>
 
-        <AnimateIn delay={0.16} className="w-full">
+        <AnimateIn delay={0.16} className="mt-4 w-full sm:mt-5">
           <div className="grid grid-cols-3 gap-3 rounded-2xl border border-white/50 bg-white/55 px-3 py-4 text-center shadow-sm backdrop-blur-md sm:px-4 sm:py-5">
             {stats.map((stat) => (
               <div key={stat.label}>

@@ -50,7 +50,7 @@ export default function HeroBrandLogo({
       onMouseLeave={handleMouseLeave}
       className={`relative w-full ${
         compact
-          ? "max-w-[min(100%,260px)] -translate-y-2"
+          ? "max-w-[min(100%,260px)] -mt-2 -translate-y-4"
           : "max-w-[min(100%,280px)] sm:max-w-[440px] lg:max-w-[480px] xl:max-w-[520px]"
       }`}
       style={{ perspective: 1200 }}
