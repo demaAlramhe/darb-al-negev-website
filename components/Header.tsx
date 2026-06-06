@@ -44,7 +44,11 @@ export default function Header() {
       }`}
     >
       <div className="mx-auto flex h-[4.75rem] max-w-7xl items-center justify-between gap-4 px-4 sm:h-[5rem] sm:px-6 lg:px-8">
-        <Link href="#home" className="flex h-full shrink-0 items-center" onClick={() => setMenuOpen(false)}>
+        <Link
+          href="#home"
+          className="relative z-10 flex h-full shrink-0 items-center overflow-visible"
+          onClick={() => setMenuOpen(false)}
+        >
           <Logo size="header" />
         </Link>
 

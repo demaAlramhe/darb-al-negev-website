@@ -24,8 +24,8 @@ export default function Logo({
 
   const imageSizeClass =
     size === "footer"
-      ? "max-h-20 w-auto max-w-[220px] sm:max-h-24 sm:max-w-[260px]"
-      : "h-[4.25rem] w-auto max-w-[260px] sm:h-[4.5rem] sm:max-w-[300px] lg:h-[4.65rem] lg:max-w-[340px]";
+      ? "max-h-20 w-auto max-w-[220px] object-contain sm:max-h-24 sm:max-w-[260px]"
+      : "h-[4.35rem] w-auto max-w-[min(52vw,220px)] object-contain sm:h-[4.6rem] sm:max-w-[min(44vw,280px)] lg:max-w-[320px] scale-[1.2] sm:scale-[1.28] lg:scale-[1.34] origin-center";
 
   if (failed || extensionIndex >= LOGO_EXTENSIONS.length) {
     return (
@@ -44,13 +44,13 @@ export default function Logo({
   const ext = LOGO_EXTENSIONS[extensionIndex];
 
   return (
-    <div className={`relative flex items-center ${className}`}>
+    <div className={`relative flex h-full items-center overflow-visible ${className}`}>
       <Image
         src={`/logoNoBackground.${ext}`}
         alt={t.siteName}
         width={280}
         height={112}
-        className={`object-contain ${imageSizeClass}`}
+        className={imageSizeClass}
         priority
         onError={() => {
           if (extensionIndex < LOGO_EXTENSIONS.length - 1) {

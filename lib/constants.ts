@@ -12,6 +12,7 @@ export const DEVELOPER_URL = "https://demadigitalsolutions.com/";
 
 export const LOGO_FULL_PATH = "/logoNoBackground.png";
 export const LOGO_ICON_PATH = "/looogo.png";
+export const HERO_BACKGROUND_PATH = "/hero/hero-office-v3.jpg";
 
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
 
