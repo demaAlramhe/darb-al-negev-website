@@ -6,6 +6,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import type { TravelPackage } from "@/types/package";
 import PackageCard from "./PackageCard";
 import AnimateIn from "./ui/AnimateIn";
+import TravelDecor from "./ui/TravelDecor";
 
 export default function FeaturedOffers({ packages }: { packages: TravelPackage[] }) {
   const { locale, t } = useLanguage();
@@ -27,6 +28,7 @@ export default function FeaturedOffers({ packages }: { packages: TravelPackage[]
     <section className="relative overflow-hidden bg-brand-dark py-20 sm:py-24">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(174,145,114,0.15),transparent_50%)]" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(255,255,255,0.05),transparent_40%)]" />
+      <TravelDecor variant="routes" light />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10 text-center">
@@ -50,7 +52,7 @@ export default function FeaturedOffers({ packages }: { packages: TravelPackage[]
         <AnimateIn className="mt-10 text-center" delay={0.3}>
           <Link
             href="#packages"
-            className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/20"
+            className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:bg-white/20 hover:shadow-lg hover:shadow-black/10"
           >
             {t.featuredOffers.viewAll}
             <ArrowLeft className="h-4 w-4 rtl:rotate-180" />

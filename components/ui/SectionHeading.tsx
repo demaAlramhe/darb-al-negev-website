@@ -4,7 +4,7 @@ import { SectionLabel } from "./Icons";
 interface SectionHeadingProps {
   label: string;
   title: string;
-  subtitle?: string;
+  subtitle?: string | string[];
   align?: "center" | "start";
 }
 
@@ -19,8 +19,26 @@ export default function SectionHeading({
   return (
     <div className={`mb-10 flex max-w-3xl flex-col gap-3 ${alignment} ${align === "center" ? "mx-auto" : ""}`}>
       <SectionLabel>{label}</SectionLabel>
-      <h2 className="text-3xl font-bold leading-tight text-brand-dark sm:text-4xl">{title}</h2>
-      {subtitle ? <p className="text-base leading-relaxed text-brand-dark/75 sm:text-lg">{subtitle}</p> : null}
+      <div
+        className={`h-px w-12 bg-gradient-to-r from-brand-accent/50 to-transparent ${
+          align === "center" ? "mx-auto" : ""
+        }`}
+        aria-hidden
+      />
+      <h2 className="text-3xl font-bold leading-tight tracking-tight text-brand-dark sm:text-4xl">{title}</h2>
+      {subtitle ? (
+        Array.isArray(subtitle) ? (
+          <div className="flex max-w-2xl flex-col gap-3">
+            {subtitle.map((line) => (
+              <p key={line} className="text-base leading-relaxed text-brand-dark/75 sm:text-lg">
+                {line}
+              </p>
+            ))}
+          </div>
+        ) : (
+          <p className="max-w-2xl text-base leading-relaxed text-brand-dark/75 sm:text-lg">{subtitle}</p>
+        )
+      ) : null}
     </div>
   );
 }
@@ -47,7 +65,7 @@ export function WhatsAppButton({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-all duration-200 sm:px-6 sm:text-base ${styles[variant]} ${className}`}
+      className={`inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 sm:px-6 sm:text-base ${styles[variant]} ${className}`}
     >
       {children}
     </a>

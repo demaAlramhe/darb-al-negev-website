@@ -5,13 +5,15 @@ import { galleryItems } from "@/data/packages";
 import { useLanguage } from "@/context/LanguageContext";
 import AnimateIn from "./ui/AnimateIn";
 import SectionHeading from "./ui/SectionHeading";
+import TravelDecor from "./ui/TravelDecor";
 
 export default function Gallery() {
   const { locale, t } = useLanguage();
 
   return (
-    <section id="gallery" className="py-20 sm:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="gallery" className="section-divider relative overflow-hidden py-20 sm:py-24">
+      <TravelDecor variant="routes" />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           label={t.gallery.label}
           title={t.gallery.title}
@@ -26,7 +28,7 @@ export default function Gallery() {
               className={`${index === 0 ? "col-span-2 row-span-2" : ""}`}
             >
               <div
-                className={`group relative overflow-hidden rounded-2xl bg-brand-dark/5 transition-transform hover:scale-[1.02] ${
+                className={`group relative overflow-hidden rounded-2xl bg-brand-dark/5 shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-lg hover:shadow-brand-dark/10 ${
                   index === 0 ? "min-h-[280px] md:min-h-[360px]" : "min-h-[160px] sm:min-h-[180px]"
                 } h-full`}
               >

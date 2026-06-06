@@ -13,7 +13,7 @@ export default function TrustBar() {
     <section aria-label="Trust highlights" className="relative z-10 -mt-4 pb-6 sm:-mt-6">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <AnimateIn>
-          <div className="overflow-hidden rounded-2xl border border-brand-dark/8 bg-white/95 shadow-lg shadow-brand-dark/5 backdrop-blur-md sm:rounded-3xl">
+          <div className="overflow-hidden rounded-2xl border border-brand-dark/8 bg-white/95 shadow-lg shadow-brand-dark/8 backdrop-blur-md transition-shadow hover:shadow-xl sm:rounded-3xl">
             <div className="grid grid-cols-2 lg:grid-cols-4">
               {t.trustBar.points.map((point, index) => {
                 const Icon = icons[index];

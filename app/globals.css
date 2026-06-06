@@ -49,6 +49,51 @@ section {
   scroll-margin-top: 5rem;
 }
 
+/* Premium polish utilities */
+.section-divider {
+  position: relative;
+}
+
+.section-divider::before {
+  content: "";
+  position: absolute;
+  inset-inline: 10%;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--brand-accent) 22%, transparent),
+    transparent
+  );
+}
+
+.premium-card {
+  border-radius: 1.5rem;
+  border: 1px solid color-mix(in srgb, var(--brand-dark) 8%, transparent);
+  background: color-mix(in srgb, white 80%, transparent);
+  box-shadow: 0 1px 3px color-mix(in srgb, var(--brand-dark) 6%, transparent);
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s ease;
+}
+
+.premium-card:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--brand-accent) 22%, transparent);
+  box-shadow: 0 14px 40px -14px color-mix(in srgb, var(--brand-dark) 18%, transparent);
+}
+
+.section-soft-gradient {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--brand-bg) 100%, transparent) 0%,
+    color-mix(in srgb, white 35%, var(--brand-bg)) 50%,
+    color-mix(in srgb, var(--brand-bg) 100%, transparent) 100%
+  );
+}
+
 /* ── Accessibility modes ── */
 
 html[data-a11y-contrast="high"] {

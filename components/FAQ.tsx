@@ -7,14 +7,16 @@ import { faqItems } from "@/data/faq";
 import { useLanguage } from "@/context/LanguageContext";
 import AnimateIn from "./ui/AnimateIn";
 import SectionHeading from "./ui/SectionHeading";
+import TravelDecor from "./ui/TravelDecor";
 
 export default function FAQ() {
   const { locale, t } = useLanguage();
   const [openId, setOpenId] = useState<string | null>(faqItems[0]?.id ?? null);
 
   return (
-    <section id="faq" className="bg-white/40 py-20 sm:py-24">
-      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <section id="faq" className="section-divider relative overflow-hidden bg-white/40 py-20 sm:py-24">
+      <TravelDecor variant="globe" />
+      <div className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           label={t.faq.label}
           title={t.faq.title}
@@ -27,16 +29,16 @@ export default function FAQ() {
             return (
               <AnimateIn key={item.id} delay={index * 0.05}>
                 <div
-                  className={`overflow-hidden rounded-2xl border transition-colors ${
+                  className={`overflow-hidden rounded-2xl border transition-all duration-300 ${
                     isOpen
-                      ? "border-brand-accent/30 bg-white shadow-sm"
-                      : "border-brand-dark/8 bg-white/70"
+                      ? "border-brand-accent/30 bg-white shadow-md shadow-brand-dark/5"
+                      : "border-brand-dark/8 bg-white/70 hover:border-brand-accent/20 hover:bg-white hover:shadow-sm"
                   }`}
                 >
                   <button
                     type="button"
                     onClick={() => setOpenId(isOpen ? null : item.id)}
-                    className="flex w-full items-center justify-between gap-4 px-5 py-4 text-start sm:px-6 sm:py-5"
+                    className="flex w-full items-center justify-between gap-4 px-5 py-4 text-start transition-colors hover:text-brand-accent sm:px-6 sm:py-5"
                     aria-expanded={isOpen}
                     suppressHydrationWarning
                   >

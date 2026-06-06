@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, type HTMLMotionProps } from "framer-motion";
+import { motion, useReducedMotion, type HTMLMotionProps } from "framer-motion";
 import type { ReactNode } from "react";
 
 interface AnimateInProps extends HTMLMotionProps<"div"> {
@@ -16,12 +16,18 @@ export default function AnimateIn({
   y = 28,
   ...props
 }: AnimateInProps) {
+  const reduceMotion = useReducedMotion();
+
   return (
     <motion.div
-      initial={{ opacity: 0, y }}
+      initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={
+        reduceMotion
+          ? { duration: 0 }
+          : { duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }
+      }
       className={className}
       {...props}
     >

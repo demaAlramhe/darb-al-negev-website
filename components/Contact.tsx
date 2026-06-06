@@ -14,6 +14,8 @@ import {
 } from "@/lib/constants";
 import AnimateIn from "./ui/AnimateIn";
 import SectionHeading from "./ui/SectionHeading";
+import { WhatsAppButton } from "./ui/SectionHeading";
+import TravelDecor from "./ui/TravelDecor";
 import { FacebookIcon, InstagramIcon } from "./ui/Icons";
 
 export default function Contact() {
@@ -78,8 +80,11 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-20 sm:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="section-soft-gradient relative overflow-hidden py-20 sm:py-24">
+      <TravelDecor variant="pins" />
+      <div className="pointer-events-none absolute -end-20 top-1/4 h-72 w-72 rounded-full bg-brand-accent/8 blur-3xl" />
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           label={t.contact.label}
           title={t.contact.title}
@@ -95,7 +100,7 @@ export default function Contact() {
                   <a
                     href={card.href}
                     {...(card.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                    className={`group flex items-center gap-4 rounded-2xl border border-brand-dark/8 bg-white/80 p-5 transition-all hover:-translate-y-0.5 hover:shadow-md ${card.hover}`}
+                    className={`group premium-card flex items-center gap-4 p-5 ${card.hover}`}
                   >
                     <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${card.iconBg} ${card.iconColor}`}>
                       <Icon className="h-5 w-5" />
@@ -147,7 +152,7 @@ export default function Contact() {
           <AnimateIn delay={0.15} className="lg:col-span-3">
             <form
               onSubmit={handleSubmit}
-              className="rounded-3xl border border-brand-dark/8 bg-white p-6 shadow-sm sm:p-8"
+              className="rounded-3xl border border-brand-dark/8 bg-white p-6 shadow-md shadow-brand-dark/5 sm:p-8"
             >
               <h3 className="mb-6 text-xl font-bold text-brand-dark">{t.contact.formTitle}</h3>
               <div className="space-y-4">
@@ -207,6 +212,18 @@ export default function Contact() {
             </form>
           </AnimateIn>
         </div>
+
+        <AnimateIn delay={0.35} className="mt-12">
+          <div className="flex flex-col items-center justify-between gap-5 rounded-3xl border border-brand-accent/20 bg-gradient-to-r from-brand-accent/10 via-white/90 to-brand-bg/80 p-6 text-center shadow-sm sm:flex-row sm:p-8 sm:text-start">
+            <div>
+              <p className="text-lg font-bold text-brand-dark sm:text-xl">{t.contact.ctaTitle}</p>
+              <p className="mt-1 text-sm text-brand-dark/70 sm:text-base">{t.contact.ctaSubtitle}</p>
+            </div>
+            <WhatsAppButton href={whatsappHref} className="shrink-0">
+              {t.contact.ctaButton}
+            </WhatsAppButton>
+          </div>
+        </AnimateIn>
       </div>
     </section>
   );

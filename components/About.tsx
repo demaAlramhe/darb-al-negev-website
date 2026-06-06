@@ -6,13 +6,17 @@ import HeroVisual from "./HeroVisual";
 import { aboutFeatureVisuals } from "./about/AboutFeatureVisuals";
 import AnimateIn from "./ui/AnimateIn";
 import SectionHeading from "./ui/SectionHeading";
+import TravelDecor from "./ui/TravelDecor";
 
 export default function About({ miniPackages }: { miniPackages: TravelPackage[] }) {
   const { t } = useLanguage();
 
   return (
-    <section id="about" className="py-20 sm:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="about" className="section-soft-gradient relative overflow-hidden py-20 sm:py-24">
+      <TravelDecor variant="map" />
+      <div className="pointer-events-none absolute -start-20 bottom-0 h-56 w-56 rounded-full bg-brand-accent/8 blur-3xl" />
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           label={t.about.label}
           title={t.about.title}
@@ -32,7 +36,7 @@ export default function About({ miniPackages }: { miniPackages: TravelPackage[] 
               const Visual = aboutFeatureVisuals[index];
               return (
                 <AnimateIn key={point} delay={0.08 + index * 0.08}>
-                  <div className="flex h-full flex-col rounded-3xl border border-brand-dark/8 bg-white/70 p-6 text-center shadow-sm transition-all hover:-translate-y-1 hover:shadow-md sm:text-start lg:flex-row lg:items-center lg:gap-5 lg:text-start">
+                  <div className="premium-card group flex h-full flex-col p-6 text-center sm:text-start lg:flex-row lg:items-center lg:gap-5 lg:text-start">
                     <div className="mx-auto mb-5 flex h-24 w-full max-w-[200px] shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-bg/80 via-white to-brand-accent/10 px-4 lg:mx-0 lg:mb-0 lg:h-20 lg:w-24">
                       {Visual ? <Visual className="h-16 w-full lg:h-14" /> : null}
                     </div>

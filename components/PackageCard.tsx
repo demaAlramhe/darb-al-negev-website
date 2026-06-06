@@ -41,7 +41,7 @@ export default function PackageCard({
 
   return (
     <article
-      className={`group flex flex-col overflow-hidden rounded-3xl border bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl ${
+      className={`group flex flex-col overflow-hidden rounded-3xl border bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-brand-dark/10 ${
         variant === "featured"
           ? "border-brand-accent/25 shadow-brand-accent/10 ring-1 ring-brand-accent/10"
           : "border-brand-dark/8 hover:border-brand-accent/25"

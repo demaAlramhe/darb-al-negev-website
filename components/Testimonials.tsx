@@ -5,13 +5,15 @@ import { testimonials } from "@/data/testimonials";
 import { useLanguage } from "@/context/LanguageContext";
 import AnimateIn from "./ui/AnimateIn";
 import SectionHeading from "./ui/SectionHeading";
+import TravelDecor from "./ui/TravelDecor";
 
 export default function Testimonials() {
   const { locale, t } = useLanguage();
 
   return (
-    <section className="py-20 sm:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="section-soft-gradient relative overflow-hidden py-20 sm:py-24">
+      <TravelDecor variant="stamps" />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           label={t.testimonials.label}
           title={t.testimonials.title}
@@ -21,7 +23,7 @@ export default function Testimonials() {
         <div className="grid gap-6 md:grid-cols-3">
           {testimonials.map((item, index) => (
             <AnimateIn key={item.id} delay={index * 0.1}>
-              <article className="flex h-full flex-col rounded-3xl border border-brand-dark/8 bg-white/80 p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md">
+              <article className="premium-card flex h-full flex-col p-6">
                 <Quote className="mb-4 h-8 w-8 text-brand-accent/40" />
                 <p className="mb-6 flex-1 text-sm leading-relaxed text-brand-dark/80 sm:text-base">
                   &ldquo;{item.text[locale]}&rdquo;

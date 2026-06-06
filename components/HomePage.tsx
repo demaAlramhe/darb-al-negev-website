@@ -14,6 +14,8 @@ import FAQ from "@/components/FAQ";
 import Gallery from "@/components/Gallery";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import BackToTop from "@/components/BackToTop";
+import ScrollProgress from "@/components/ScrollProgress";
 import StickyWhatsApp from "@/components/StickyWhatsApp";
 import { useLanguage } from "@/context/LanguageContext";
 import type { TravelPackage } from "@/types/package";
@@ -41,6 +43,8 @@ export default function HomePage({ packages }: { packages: TravelPackage[] }) {
         <Contact />
       </main>
       <Footer />
+      <ScrollProgress />
+      <BackToTop />
       <StickyWhatsApp />
     </div>
   );

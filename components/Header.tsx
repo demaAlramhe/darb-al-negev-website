@@ -1,25 +1,28 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import Logo from "./Logo";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useLanguage } from "@/context/LanguageContext";
+import { useActiveSection } from "@/hooks/useActiveSection";
 import { CloseIcon, MenuIcon } from "./ui/Icons";
 
 const navLinks = [
-  { key: "home" as const, href: "#home" },
-  { key: "about" as const, href: "#about" },
-  { key: "services" as const, href: "#services" },
-  { key: "packages" as const, href: "#packages" },
-  { key: "faq" as const, href: "#faq" },
-  { key: "contact" as const, href: "#contact" },
+  { key: "home" as const, href: "#home", sectionId: "home" },
+  { key: "about" as const, href: "#about", sectionId: "about" },
+  { key: "services" as const, href: "#services", sectionId: "services" },
+  { key: "packages" as const, href: "#packages", sectionId: "packages" },
+  { key: "faq" as const, href: "#faq", sectionId: "faq" },
+  { key: "contact" as const, href: "#contact", sectionId: "contact" },
 ];
 
 export default function Header() {
   const { t } = useLanguage();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const sectionIds = useMemo(() => navLinks.map((link) => link.sectionId), []);
+  const activeSection = useActiveSection(sectionIds);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -34,6 +37,22 @@ export default function Header() {
       document.body.style.overflow = "";
     };
   }, [menuOpen]);
+
+  function linkClass(sectionId: string, mobile = false) {
+    const isActive = activeSection === sectionId;
+
+    if (mobile) {
+      return `rounded-xl px-3 py-3 text-base font-medium transition-colors ${
+        isActive
+          ? "bg-brand-accent/12 text-brand-accent"
+          : "text-brand-dark hover:bg-brand-accent/10 hover:text-brand-accent"
+      }`;
+    }
+
+    return `relative inline-block py-1 transition-colors ${
+      isActive ? "font-semibold text-brand-accent" : "text-brand-dark/80 hover:text-brand-accent"
+    }`;
+  }
 
   return (
     <header
@@ -54,12 +73,11 @@ export default function Header() {
 
         <nav className="hidden items-center gap-6 lg:flex" aria-label="Main navigation">
           {navLinks.map((link) => (
-            <a
-              key={link.key}
-              href={link.href}
-              className="text-sm font-medium text-brand-dark/80 transition-colors hover:text-brand-accent"
-            >
+            <a key={link.key} href={link.href} className={`text-sm font-medium ${linkClass(link.sectionId)}`}>
               {t.nav[link.key]}
+              {activeSection === link.sectionId ? (
+                <span className="absolute -bottom-1 inset-x-0 mx-auto h-0.5 w-4 rounded-full bg-brand-accent" />
+              ) : null}
             </a>
           ))}
         </nav>
@@ -90,7 +108,7 @@ export default function Header() {
               <a
                 key={link.key}
                 href={link.href}
-                className="rounded-xl px-3 py-3 text-base font-medium text-brand-dark transition-colors hover:bg-brand-accent/10 hover:text-brand-accent"
+                className={linkClass(link.sectionId, true)}
                 onClick={() => setMenuOpen(false)}
               >
                 {t.nav[link.key]}
