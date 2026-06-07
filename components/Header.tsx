@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Logo from "./Logo";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useLanguage } from "@/context/LanguageContext";
@@ -9,16 +10,17 @@ import { useActiveSection } from "@/hooks/useActiveSection";
 import { CloseIcon, MenuIcon } from "./ui/Icons";
 
 const navLinks = [
-  { key: "home" as const, href: "#home", sectionId: "home" },
-  { key: "about" as const, href: "#about", sectionId: "about" },
-  { key: "services" as const, href: "#services", sectionId: "services" },
-  { key: "packages" as const, href: "#packages", sectionId: "packages" },
-  { key: "faq" as const, href: "#faq", sectionId: "faq" },
-  { key: "contact" as const, href: "#contact", sectionId: "contact" },
+  { key: "home" as const, href: "/#home", sectionId: "home", pageMatch: "/" },
+  { key: "about" as const, href: "/#about", sectionId: "about", pageMatch: "/" },
+  { key: "services" as const, href: "/#services", sectionId: "services", pageMatch: "/" },
+  { key: "packages" as const, href: "/offers", sectionId: "packages", pageMatch: "/offers" },
+  { key: "faq" as const, href: "/#faq", sectionId: "faq", pageMatch: "/" },
+  { key: "contact" as const, href: "/#contact", sectionId: "contact", pageMatch: "/" },
 ];
 
 export default function Header() {
   const { t } = useLanguage();
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const sectionIds = useMemo(() => navLinks.map((link) => link.sectionId), []);
@@ -38,8 +40,14 @@ export default function Header() {
     };
   }, [menuOpen]);
 
-  function linkClass(sectionId: string, mobile = false) {
-    const isActive = activeSection === sectionId;
+  function isLinkActive(link: (typeof navLinks)[number]) {
+    if (link.key === "packages") return pathname === "/offers";
+    if (pathname !== "/") return false;
+    return activeSection === link.sectionId;
+  }
+
+  function linkClass(link: (typeof navLinks)[number], mobile = false) {
+    const isActive = isLinkActive(link);
 
     if (mobile) {
       return `rounded-xl px-3 py-3 text-base font-medium transition-colors ${
@@ -64,7 +72,7 @@ export default function Header() {
     >
       <div className="mx-auto flex h-[4.75rem] max-w-7xl items-center justify-between gap-4 px-4 sm:h-[5rem] sm:px-6 lg:px-8">
         <Link
-          href="#home"
+          href="/"
           className="relative z-10 flex h-full shrink-0 items-center overflow-visible"
           onClick={() => setMenuOpen(false)}
         >
@@ -73,12 +81,12 @@ export default function Header() {
 
         <nav className="hidden items-center gap-6 lg:flex" aria-label="Main navigation">
           {navLinks.map((link) => (
-            <a key={link.key} href={link.href} className={`text-sm font-medium ${linkClass(link.sectionId)}`}>
+            <Link key={link.key} href={link.href} className={`text-sm font-medium ${linkClass(link)}`}>
               {t.nav[link.key]}
-              {activeSection === link.sectionId ? (
+              {isLinkActive(link) ? (
                 <span className="absolute -bottom-1 inset-x-0 mx-auto h-0.5 w-4 rounded-full bg-brand-accent" />
               ) : null}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -105,14 +113,14 @@ export default function Header() {
         <div className="border-t border-brand-dark/10 bg-brand-bg/98 px-4 py-5 lg:hidden">
           <nav className="flex flex-col gap-1" aria-label="Mobile navigation">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.key}
                 href={link.href}
-                className={linkClass(link.sectionId, true)}
+                className={linkClass(link, true)}
                 onClick={() => setMenuOpen(false)}
               >
                 {t.nav[link.key]}
-              </a>
+              </Link>
             ))}
           </nav>
         </div>

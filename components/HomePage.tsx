@@ -6,7 +6,6 @@ import TrustBar from "@/components/TrustBar";
 import About from "@/components/About";
 import HowItWorks from "@/components/HowItWorks";
 import Services from "@/components/Services";
-import FeaturedOffers from "@/components/FeaturedOffers";
 import Packages from "@/components/Packages";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import Testimonials from "@/components/Testimonials";
@@ -18,6 +17,7 @@ import BackToTop from "@/components/BackToTop";
 import ScrollProgress from "@/components/ScrollProgress";
 import StickyWhatsApp from "@/components/StickyWhatsApp";
 import { useLanguage } from "@/context/LanguageContext";
+import { HOMEPAGE_PACKAGE_PREVIEW_LIMIT } from "@/lib/packages";
 import type { TravelPackage } from "@/types/package";
 
 export default function HomePage({ packages }: { packages: TravelPackage[] }) {
@@ -34,8 +34,12 @@ export default function HomePage({ packages }: { packages: TravelPackage[] }) {
         <About miniPackages={miniPackages} />
         <HowItWorks />
         <Services />
-        <FeaturedOffers packages={featuredPackages.length > 0 ? featuredPackages : packages.slice(0, 2)} />
-        <Packages packages={packages} />
+        <Packages
+          packages={packages}
+          limit={HOMEPAGE_PACKAGE_PREVIEW_LIMIT}
+          showViewAll
+          variant="home"
+        />
         <WhyChooseUs />
         <Testimonials />
         <FAQ />

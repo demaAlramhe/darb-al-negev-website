@@ -6,6 +6,7 @@ import { getSupabaseAdmin } from "@/lib/supabase/admin";
 import { getSupabasePublic } from "@/lib/supabase/public";
 
 export const MAX_PACKAGE_IMAGES = 3;
+export const HOMEPAGE_PACKAGE_PREVIEW_LIMIT = 3;
 
 const PACKAGE_SELECT = "*, package_images(*), package_price_options(*)";
 

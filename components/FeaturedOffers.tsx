@@ -51,7 +51,7 @@ export default function FeaturedOffers({ packages }: { packages: TravelPackage[]
 
         <AnimateIn className="mt-10 text-center" delay={0.3}>
           <Link
-            href="#packages"
+            href="/offers"
             className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:bg-white/20 hover:shadow-lg hover:shadow-black/10"
           >
             {t.featuredOffers.viewAll}

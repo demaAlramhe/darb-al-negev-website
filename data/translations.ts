@@ -125,6 +125,13 @@ export const translations = {
         special: "عرض خاص",
         popular: "الأكثر طلبًا",
       },
+      viewAll: "عرض كل البكجات",
+    },
+
+    offers: {
+      label: "العروض",
+      title: "كل عروض السفر والبكجات",
+      subtitle: "تصفح أحدث العروض والبكجات المتوفرة وتواصل معنا للاستفسار والحجز.",
     },
 
     whyUs: {
@@ -377,6 +384,13 @@ export const translations = {
         special: "מבצע",
         popular: "מבוקש",
       },
+      viewAll: "לכל החבילות",
+    },
+
+    offers: {
+      label: "הצעות",
+      title: "כל הצעות הנסיעה והחבילות",
+      subtitle: "ניתן לעיין בכל ההצעות והחבילות הזמינות וליצור קשר לפרטים והזמנה.",
     },
 
     whyUs: {

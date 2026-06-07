@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -16,8 +16,13 @@ export default function PackageCardImageGallery({
   className = "",
 }: PackageCardImageGalleryProps) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [controlsReady, setControlsReady] = useState(false);
   const hasMultiple = images.length > 1;
   const activeImage = images[activeIndex] ?? images[0];
+
+  useEffect(() => {
+    setControlsReady(true);
+  }, []);
 
   function showPrev() {
     setActiveIndex((current) => (current === 0 ? images.length - 1 : current - 1));
@@ -39,11 +44,12 @@ export default function PackageCardImageGallery({
       />
       <div className="absolute inset-0 bg-black/20 transition-colors group-hover:bg-black/10" />
 
-      {hasMultiple ? (
+      {hasMultiple && controlsReady ? (
         <>
           <button
             type="button"
             onClick={showPrev}
+            suppressHydrationWarning
             className="absolute start-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-black/45 text-white opacity-0 transition-opacity group-hover:opacity-100"
             aria-label="Previous image"
           >
@@ -52,6 +58,7 @@ export default function PackageCardImageGallery({
           <button
             type="button"
             onClick={showNext}
+            suppressHydrationWarning
             className="absolute end-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-black/45 text-white opacity-0 transition-opacity group-hover:opacity-100"
             aria-label="Next image"
           >
@@ -61,9 +68,10 @@ export default function PackageCardImageGallery({
           <div className="absolute inset-x-0 bottom-14 z-10 flex justify-center gap-1.5">
             {images.map((image, index) => (
               <button
-                key={image}
+                key={`${image}-${index}`}
                 type="button"
                 onClick={() => setActiveIndex(index)}
+                suppressHydrationWarning
                 className={`h-1.5 rounded-full transition-all ${
                   index === activeIndex ? "w-5 bg-white" : "w-1.5 bg-white/55"
                 }`}

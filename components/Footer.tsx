@@ -15,11 +15,11 @@ import {
 import { FacebookIcon, InstagramIcon, MailIcon, PhoneIcon } from "./ui/Icons";
 
 const footerLinks = [
-  { key: "about" as const, href: "#about" },
-  { key: "services" as const, href: "#services" },
-  { key: "packages" as const, href: "#packages" },
-  { key: "faq" as const, href: "#faq" },
-  { key: "contact" as const, href: "#contact" },
+  { key: "about" as const, href: "/#about" },
+  { key: "services" as const, href: "/#services" },
+  { key: "packages" as const, href: "/offers" },
+  { key: "faq" as const, href: "/#faq" },
+  { key: "contact" as const, href: "/#contact" },
 ];
 
 export default function Footer() {
@@ -31,7 +31,7 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-2">
-            <Link href="#home">
+            <Link href="/">
               <Logo variant="light" size="footer" />
             </Link>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-white/70">
@@ -46,12 +46,12 @@ export default function Footer() {
             <ul className="space-y-2">
               {footerLinks.map((link) => (
                 <li key={link.key}>
-                  <a
+                  <Link
                     href={link.href}
                     className="text-sm text-white/75 transition-colors hover:text-white"
                   >
                     {t.nav[link.key]}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

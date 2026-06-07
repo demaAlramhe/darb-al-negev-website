@@ -59,7 +59,7 @@ export default function Hero() {
 
         <AnimateIn delay={0.12} className="flex w-full flex-col items-center gap-3">
           <motion.a
-            href="#packages"
+            href="/offers"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-full bg-brand-dark px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-dark/25 transition-colors hover:bg-brand-dark/90 sm:max-w-sm sm:text-base"
@@ -101,7 +101,7 @@ export default function Hero() {
 
           <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:items-center">
             <motion.a
-              href="#packages"
+              href="/offers"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-dark px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-dark/25 transition-colors hover:bg-brand-dark/90 sm:text-base"
