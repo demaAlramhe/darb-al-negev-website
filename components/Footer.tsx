@@ -29,17 +29,17 @@ export default function Footer() {
   return (
     <footer className="border-t border-brand-dark/10 bg-brand-dark text-white">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
-          <div className="lg:col-span-2">
-            <Link href="/">
+        <div className="grid items-start gap-8 sm:grid-cols-2 lg:grid-cols-12">
+          <div className="sm:col-span-2 lg:col-span-5">
+            <Link href="/" className="inline-block">
               <Logo variant="light" size="footer" />
             </Link>
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-white/70">
+            <p className="mt-3 max-w-md text-sm leading-relaxed text-white/70">
               {t.footer.description}
             </p>
           </div>
 
-          <div>
+          <div className="lg:col-span-3">
             <h3 className="mb-4 text-sm font-bold uppercase tracking-wide text-brand-accent">
               {t.footer.quickLinks}
             </h3>
@@ -57,7 +57,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className="lg:col-span-4">
             <h3 className="mb-4 text-sm font-bold uppercase tracking-wide text-brand-accent">
               {t.footer.contactInfo}
             </h3>
@@ -98,7 +98,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 border-t border-white/10 pt-6 text-center text-sm text-white/55">
+        <div className="mt-8 border-t border-white/10 pt-6 text-center text-sm text-white/55">
           © {year} {t.siteName}. {t.footer.rights}.
           <p className="mt-2 text-xs text-white/40">
             {t.footer.developedBy}{" "}

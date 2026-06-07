@@ -44,7 +44,11 @@ export default function Logo({
   const ext = LOGO_EXTENSIONS[extensionIndex];
 
   return (
-    <div className={`relative flex h-full items-center overflow-visible ${className}`}>
+    <div
+      className={`relative flex items-center overflow-visible ${
+        size === "footer" ? "" : "h-full"
+      } ${className}`}
+    >
       <Image
         src={`/logoNoBackground.${ext}`}
         alt={t.siteName}
