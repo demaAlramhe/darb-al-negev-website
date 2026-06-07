@@ -97,10 +97,13 @@ export async function getActivePackages(): Promise<TravelPackage[]> {
       .from("packages")
       .select(PACKAGE_SELECT)
       .eq("is_active", true)
-      .order("created_at", { ascending: false });
+      .order("created_at", { ascending: false })
+      .limit(1000);
 
     if (error || !data) return [];
-    return (data as DbPackageWithImages[]).map(dbPackageToTravelPackage);
+    return (data as DbPackageWithImages[]).map((pkg, index) =>
+      dbPackageToTravelPackage(pkg, index),
+    );
   } catch {
     return [];
   }

@@ -31,7 +31,8 @@ export default function Packages({
 }: PackagesProps) {
   const { locale, t } = useLanguage();
   const heading = variant === "offers" ? t.offers : t.packages;
-  const displayed = limit ? packages.slice(0, limit) : packages;
+  const displayed =
+    typeof limit === "number" && limit > 0 ? packages.slice(0, limit) : packages;
 
   const labels = {
     destination: t.packages.destination,

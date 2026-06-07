@@ -15,6 +15,11 @@ async function assertAdmin() {
   }
 }
 
+function revalidatePublicPackagePages() {
+  revalidatePath("/");
+  revalidatePath("/offers");
+}
+
 function parsePackageForm(formData: FormData): PackageFormData {
   return {
     title_ar: String(formData.get("title_ar") ?? "").trim(),
@@ -150,7 +155,7 @@ export async function createPackageAction(formData: FormData) {
     if (imageError) return { error: imageError.message };
   }
 
-  revalidatePath("/");
+  revalidatePublicPackagePages();
   revalidatePath("/admin/packages");
   revalidatePath("/admin/dashboard");
   redirect(`/admin/packages/${data.id}/edit?success=created`);
@@ -198,7 +203,7 @@ export async function updatePackageAction(id: string, formData: FormData) {
     if (imageError) return { error: imageError.message };
   }
 
-  revalidatePath("/");
+  revalidatePublicPackagePages();
   revalidatePath("/admin/packages");
   revalidatePath(`/admin/packages/${id}/edit`);
   return { success: true };
@@ -210,7 +215,7 @@ export async function togglePackageActiveAction(id: string, isActive: boolean) {
   const { error } = await supabase.from("packages").update({ is_active: isActive }).eq("id", id);
   if (error) return { error: error.message };
 
-  revalidatePath("/");
+  revalidatePublicPackagePages();
   revalidatePath("/admin/packages");
   revalidatePath("/admin/dashboard");
   return { success: true };
@@ -237,7 +242,7 @@ export async function deletePackageAction(id: string) {
   const { error } = await supabase.from("packages").delete().eq("id", id);
   if (error) return { error: error.message };
 
-  revalidatePath("/");
+  revalidatePublicPackagePages();
   revalidatePath("/admin/packages");
   revalidatePath("/admin/dashboard");
   redirect("/admin/packages?success=deleted");
@@ -260,6 +265,6 @@ export async function deletePackageImageAction(imageId: string, packageId: strin
   if (error) return { error: error.message };
 
   revalidatePath(`/admin/packages/${packageId}/edit`);
-  revalidatePath("/");
+  revalidatePublicPackagePages();
   return { success: true };
 }
