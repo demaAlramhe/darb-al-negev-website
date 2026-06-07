@@ -30,8 +30,29 @@ export interface DbPackageImage {
   created_at: string;
 }
 
+export interface DbPackagePriceOption {
+  id: string;
+  package_id: string;
+  label_ar: string;
+  label_he: string | null;
+  price_ar: string;
+  price_he: string | null;
+  sort_order: number;
+  created_at: string;
+}
+
 export interface DbPackageWithImages extends DbPackage {
   package_images: DbPackageImage[];
+  package_price_options?: DbPackagePriceOption[];
+}
+
+export interface PriceOptionFormEntry {
+  id?: string;
+  label_ar: string;
+  label_he: string;
+  price_ar: string;
+  price_he: string;
+  sort_order: number;
 }
 
 export interface PackageFormData {

@@ -118,6 +118,8 @@ export const translations = {
       date: "التاريخ",
       duration: "المدة",
       perPerson: "للشخص",
+      priceOptions: "خيارات السعر",
+      notes: "ملاحظات",
       badges: {
         new: "جديد",
         special: "عرض خاص",
@@ -368,6 +370,8 @@ export const translations = {
       date: "תאריך",
       duration: "משך",
       perPerson: "לאדם",
+      priceOptions: "אפשרויות מחיר",
+      notes: "הערות",
       badges: {
         new: "חדש",
         special: "מבצע",

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Plus, Pencil } from "lucide-react";
 import DeletePackageButton from "@/components/admin/DeletePackageButton";
 import ToggleActiveButton from "@/components/admin/ToggleActiveButton";
-import { getAllPackagesAdmin } from "@/lib/packages";
+import { getAllPackagesAdmin, getAdminPackageDisplayPrice } from "@/lib/packages";
 import { isSupabaseConfigured } from "@/lib/supabase/admin";
 import { adminAr } from "@/data/admin-ar";
 
@@ -84,7 +84,7 @@ export default async function AdminPackagesPage({
                     <p className="mt-1 text-sm text-brand-dark/70">{pkg.destination_ar}</p>
                     <div className="mt-2 flex flex-wrap gap-3 text-xs text-brand-dark/60">
                       <span>
-                        {adminAr.packages.price}: {pkg.price}
+                        {adminAr.packages.price}: {getAdminPackageDisplayPrice(pkg)}
                       </span>
                       <span>
                         {adminAr.packages.date}: {pkg.travel_date}

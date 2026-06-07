@@ -5,6 +5,7 @@ import type { Locale } from "@/types/language";
 import type { PackageBadge, TravelPackage } from "@/types/package";
 import { getWhatsAppInquiryUrl } from "@/lib/constants";
 import { Calendar, Clock, MapPin } from "lucide-react";
+import PackageCardImageGallery from "./PackageCardImageGallery";
 import { WhatsAppIcon } from "./ui/Icons";
 import { WhatsAppButton } from "./ui/SectionHeading";
 
@@ -14,9 +15,11 @@ interface PackageCardProps {
   labels: {
     destination: string;
     price: string;
+    priceOptions: string;
     date: string;
     duration: string;
     perPerson: string;
+    notes: string;
     inquireWhatsApp: string;
     badges: Record<PackageBadge, string>;
     packagePrefix: string;
@@ -38,6 +41,15 @@ export default function PackageCard({
 }: PackageCardProps) {
   const title = pkg.title[locale];
   const whatsappHref = getWhatsAppInquiryUrl(`${labels.packagePrefix} ${title}`);
+  const galleryImages = pkg.imageUrls ?? (pkg.imageUrl ? [pkg.imageUrl] : []);
+  const hasPhotos = galleryImages.length > 0;
+  const notesText = pkg.notes?.[locale]?.trim();
+
+  const options = pkg.priceOptions ?? [];
+  const hasPriceOptions = options.length > 0;
+  const singleOption = hasPriceOptions && options.length === 1;
+  const multipleOptions = hasPriceOptions && options.length > 1;
+  const legacyPrice = pkg.price[locale]?.trim();
 
   return (
     <article
@@ -47,12 +59,9 @@ export default function PackageCard({
           : "border-brand-dark/8 hover:border-brand-accent/25"
       }`}
     >
-      <div className={`relative h-52 ${pkg.imageUrl ? "bg-brand-dark/5" : `bg-gradient-to-br ${pkg.imageGradient}`}`}>
-        {pkg.imageUrl ? (
-          <>
-            <Image src={pkg.imageUrl} alt={title} fill className="object-cover" sizes="(max-width:768px) 100vw, 33vw" />
-            <div className="absolute inset-0 bg-black/20 transition-colors group-hover:bg-black/10" />
-          </>
+      <div className={`relative h-52 ${hasPhotos ? "bg-brand-dark/5" : `bg-gradient-to-br ${pkg.imageGradient}`}`}>
+        {hasPhotos ? (
+          <PackageCardImageGallery images={galleryImages} alt={title} />
         ) : (
           <>
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.15),transparent_50%)]" />
@@ -62,12 +71,12 @@ export default function PackageCard({
         )}
         {pkg.badge ? (
           <span
-            className={`absolute end-4 top-4 rounded-full px-3 py-1 text-xs font-bold shadow-sm ${badgeStyles[pkg.badge]}`}
+            className={`absolute end-4 top-4 z-10 rounded-full px-3 py-1 text-xs font-bold shadow-sm ${badgeStyles[pkg.badge]}`}
           >
             {labels.badges[pkg.badge]}
           </span>
         ) : null}
-        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/50 to-transparent p-4 pt-10">
+        <div className="absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/50 to-transparent p-4 pt-10">
           <p className="text-xs font-medium text-white/80">{pkg.destination[locale]}</p>
           <h3 className="text-lg font-bold text-white">{title}</h3>
         </div>
@@ -93,12 +102,48 @@ export default function PackageCard({
           </li>
         </ul>
 
+        {notesText ? (
+          <div className="mb-5 rounded-xl border border-brand-accent/15 bg-brand-bg/60 px-3.5 py-3">
+            <p className="mb-1 text-xs font-semibold text-brand-accent">{labels.notes}</p>
+            <p className="text-sm leading-relaxed text-brand-dark/75">{notesText}</p>
+          </div>
+        ) : null}
+
         <div className="mb-5 mt-auto border-t border-brand-dark/8 pt-4">
-          <p className="text-xs text-brand-dark/55">{labels.price}</p>
-          <p className="text-2xl font-bold text-brand-accent">
-            {pkg.price[locale]}
-            <span className="ms-1 text-sm font-normal text-brand-dark/60">{labels.perPerson}</span>
-          </p>
+          {singleOption ? (
+            <>
+              <p className="text-xs text-brand-dark/55">{labels.price}</p>
+              <p className="text-2xl font-bold text-brand-accent">
+                {options[0].price[locale]}
+                <span className="ms-1 text-sm font-normal text-brand-dark/60">
+                  {options[0].label[locale]}
+                </span>
+              </p>
+            </>
+          ) : multipleOptions ? (
+            <div className="rounded-xl border border-brand-accent/15 bg-brand-bg/40 px-3.5 py-3">
+              <p className="mb-2 text-xs font-semibold text-brand-accent">{labels.priceOptions}</p>
+              <ul className="space-y-1.5">
+                {options.map((option, index) => (
+                  <li
+                    key={`${option.label[locale]}-${index}`}
+                    className="flex items-baseline justify-between gap-3 text-sm"
+                  >
+                    <span className="text-brand-dark/75">{option.label[locale]}</span>
+                    <span className="shrink-0 font-bold text-brand-accent">{option.price[locale]}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : legacyPrice ? (
+            <>
+              <p className="text-xs text-brand-dark/55">{labels.price}</p>
+              <p className="text-2xl font-bold text-brand-accent">
+                {legacyPrice}
+                <span className="ms-1 text-sm font-normal text-brand-dark/60">{labels.perPerson}</span>
+              </p>
+            </>
+          ) : null}
         </div>
 
         <WhatsAppButton href={whatsappHref} className="w-full">

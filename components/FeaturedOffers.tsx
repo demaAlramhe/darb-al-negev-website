@@ -15,9 +15,11 @@ export default function FeaturedOffers({ packages }: { packages: TravelPackage[]
   const labels = {
     destination: t.packages.destination,
     price: t.packages.price,
+    priceOptions: t.packages.priceOptions,
     date: t.packages.date,
     duration: t.packages.duration,
     perPerson: t.packages.perPerson,
+    notes: t.packages.notes,
     inquireWhatsApp: t.packages.inquireWhatsApp,
     badges: t.packages.badges,
     packagePrefix: t.whatsapp.packagePrefix,

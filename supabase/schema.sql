@@ -39,6 +39,19 @@ create table if not exists public.package_images (
   created_at timestamp with time zone not null default now()
 );
 
+-- ── 3. package_price_options ───────────────────────────────
+
+create table if not exists public.package_price_options (
+  id uuid primary key default gen_random_uuid(),
+  package_id uuid not null references public.packages(id) on delete cascade,
+  label_ar text not null,
+  label_he text,
+  price_ar text not null,
+  price_he text,
+  sort_order integer not null default 0,
+  created_at timestamp with time zone not null default now()
+);
+
 -- ── Indexes ──────────────────────────────────────────────────
 
 create index if not exists idx_packages_is_active
@@ -49,6 +62,12 @@ create index if not exists idx_packages_created_at
 
 create index if not exists idx_package_images_package_id
   on public.package_images(package_id);
+
+create index if not exists idx_package_price_options_package_id
+  on public.package_price_options(package_id);
+
+create index if not exists idx_package_price_options_sort
+  on public.package_price_options(package_id, sort_order);
 
 -- ── updated_at trigger for packages ──────────────────────────
 
@@ -74,6 +93,7 @@ create trigger trg_packages_updated_at
 
 alter table public.packages enable row level security;
 alter table public.package_images enable row level security;
+alter table public.package_price_options enable row level security;
 
 drop policy if exists "Public read active packages" on public.packages;
 create policy "Public read active packages"
@@ -90,6 +110,19 @@ create policy "Public read images of active packages"
       select 1
       from public.packages
       where packages.id = package_images.package_id
+        and packages.is_active = true
+    )
+  );
+
+drop policy if exists "Public read price options of active packages" on public.package_price_options;
+create policy "Public read price options of active packages"
+  on public.package_price_options
+  for select
+  using (
+    exists (
+      select 1
+      from public.packages
+      where packages.id = package_price_options.package_id
         and packages.is_active = true
     )
   );
